@@ -1,6 +1,5 @@
-
-from flask import Flask, render_template, request
-
+import sqlite3
+from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 categories = {
@@ -81,6 +80,55 @@ def events():
         event=categories[selected]
     )
 
+
+def create_contact_table():
+    connection = sqlite3.connect("events.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS enquiries (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            phone TEXT NOT NULL,
+            event_type TEXT NOT NULL,
+            event_date TEXT NOT NULL,
+            message TEXT NOT NULL
+        )
+    """)
+
+    connection.commit()
+    connection.close()
+
+
+create_contact_table()
+
+
+@app.route("/contact", methods=["POST"])
+def contact():
+    name = request.form.get("name", "").strip()
+    email = request.form.get("email", "").strip()
+    phone = request.form.get("phone", "").strip()
+    event_type = request.form.get("event_type", "").strip()
+    event_date = request.form.get("event_date", "").strip()
+    message = request.form.get("message", "").strip()
+
+    if not all([name, email, phone, event_type, event_date, message]):
+        return "Please fill in all the fields.", 400
+
+    connection = sqlite3.connect("events.db")
+    cursor = connection.cursor()
+
+    cursor.execute("""
+        INSERT INTO enquiries
+        (name, email, phone, event_type, event_date, message)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, (name, email, phone, event_type, event_date, message))
+
+    connection.commit()
+    connection.close()
+
+    return redirect(url_for("home") + "?submitted=1#contact")
 
 if __name__ == "__main__":
     app.run(debug=True)
