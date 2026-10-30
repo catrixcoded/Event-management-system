@@ -1,55 +1,72 @@
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Our Events</title>
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Events | EventEase</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<nav>
-    <h2>EventEase</h2>
-    <a href="/">Home</a>
-    <a href="/events">Events</a>
-    <a href="/register">Register</a>
-    <a href="/admin">Admin</a>
+<nav class="navbar">
+    <a href="/" class="logo">EventEase</a>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/events">Our Events</a>
+        <a href="/#contact">Contact</a>
+    </div>
 </nav>
 
-<h1 class="page-title">Upcoming Events</h1>
+<section class="events-page">
+    <div class="section-heading">
+        <p class="eyebrow">OUR EXPERTISE</p>
+        <h1>Explore Our Event Services</h1>
+        <p>Choose an event category to discover how we can help.</p>
+    </div>
 
-<div class="event-container">
+    <div class="events-layout">
 
-{% for event in events %}
+        <aside class="sidebar">
+            <h3>Event Categories</h3>
 
-<div class="event-card">
-    <h2>{{ event[1] }}</h2>
-    <p>Date: {{ event[2] }}</p>
-    <p>Venue: {{ event[3] }}</p>
-    <p>Price: ₹{{ event[4] }}</p>
-    <a href="/register" class="btn">Register Now</a>
-</div>
+            {% for key, item in categories.items() %}
+            <a href="/events?category={{ key }}"
+               class="sidebar-link {% if selected == key %}active{% endif %}">
+                {{ item.name }}
+            </a>
+            {% endfor %}
+        </aside>
 
-{% endfor %}
+        <div class="event-details">
+            <img src="{{ event.image }}" alt="{{ event.name }}" class="event-image">
 
-</div>
+            <div class="event-description">
+                <p class="eyebrow">WHAT WE OFFER</p>
+                <h2>{{ event.name }}</h2>
+                <p>{{ event.description }}</p>
 
-<h2 class="page-title">Add a New Event</h2>
+                <h3>Our Services</h3>
 
-<form action="/add_event" method="POST" class="form-box">
-    <input type="text" name="name"
-    placeholder="Event Name" required>
+                <ul class="service-list">
+                    {% for service in event.services %}
+                    <li>{{ service }}</li>
+                    {% endfor %}
+                </ul>
 
-    <input type="date" name="date" required>
+                <a href="/#contact" class="button">Get in Touch</a>
+            </div>
+        </div>
 
-    <input type="text" name="venue"
-    placeholder="Event Venue" required>
+    </div>
+</section>
 
-    <input type="number" name="price"
-    placeholder="Ticket Price" required>
-
-    <button type="submit">Add Event</button>
-</form>
+<footer>
+    <p>© 2026 EventEase. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
+
+
