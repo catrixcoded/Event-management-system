@@ -1,0 +1,182 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4fb;
+    color: #333;
+}
+
+nav {
+    background-color: #25245b;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #b8b5ff;
+}
+
+.hero {
+    background: linear-gradient(120deg, #34318c, #7766c9);
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    margin: 12px;
+    font-size: 18px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #ffb84d;
+    color: #222;
+    padding: 12px 22px;
+    text-decoration: none;
+    border-radius: 6px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    background-color: #ffa31a;
+}
+
+.content {
+    text-align: center;
+    padding: 55px 20px;
+}
+
+.content h2 {
+    margin-bottom: 20px;
+    color: #34318c;
+}
+
+.page-title {
+    text-align: center;
+    margin: 35px 10px;
+    color: #34318c;
+}
+
+.event-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    padding: 20px;
+}
+
+.event-card {
+    background: white;
+    width: 280px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #cccccc;
+}
+
+.event-card h2 {
+    color: #34318c;
+    margin-bottom: 15px;
+}
+
+.event-card p {
+    margin: 12px 0;
+}
+
+.form-box {
+    background: white;
+    max-width: 450px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #cccccc;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin: 12px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    background-color: #34318c;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #5a50b5;
+}
+
+.table-container {
+    overflow-x: auto;
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+    background: white;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 14px;
+    text-align: center;
+}
+
+th {
+    background-color: #34318c;
+    color: white;
+}
+
+footer {
+    background-color: #25245b;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+@media (max-width: 600px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+
+    .form-box {
+        margin: 20px;
+    }
+}
