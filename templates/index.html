@@ -1,39 +1,87 @@
 
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>EventEase - Home</title>
-    <link rel="stylesheet"
-    href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventEase | Event Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
-<nav>
-    <h2>EventEase</h2>
-    <a href="/">Home</a>
-    <a href="/events">Events</a>
-    <a href="/register">Register</a>
-    <a href="/admin">Admin</a>
+<nav class="navbar">
+    <a href="/" class="logo">EventEase</a>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/events">Our Events</a>
+        <a href="#contact">Contact</a>
+    </div>
 </nav>
 
-<section class="hero">
-    <h1>Welcome to EventEase</h1>
-    <p>Make Every Event Memorable!</p>
-    <p>Discover events, participate and create memories.</p>
-    <a href="/events" class="btn">Explore Events</a>
+<header class="hero">
+    <div class="hero-content">
+        <p class="eyebrow">CREATING MOMENTS THAT MATTER</p>
+        <h1>We Plan. We Create. You Celebrate.</h1>
+        <p>From corporate gatherings to dream weddings, we turn your ideas into unforgettable experiences.</p>
+        <a href="/events" class="button">Explore Our Services</a>
+    </div>
+</header>
+
+<section class="section">
+    <div class="section-heading">
+        <p class="eyebrow">WHAT WE DO</p>
+        <h2>Events Made Special</h2>
+        <p>Every event has a story. We help you bring yours to life.</p>
+    </div>
+
+    <div class="category-grid">
+        {% for key, item in categories.items() %}
+        <a href="/events?category={{ key }}" class="category-card">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <div class="category-info">
+                <h3>{{ item.name }}</h3>
+                <p>{{ item.description }}</p>
+                <span>Explore More →</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
 </section>
 
-<section class="content">
-    <h2>About Our Website</h2>
-    <p>
-        EventEase is an event management website
-        where users can explore upcoming events
-        and register for their favourite events.
-    </p>
+<section class="about-section">
+    <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200"
+             alt="Event planning team">
+    </div>
+
+    <div class="about-text">
+        <p class="eyebrow">ABOUT EVENTEASE</p>
+        <h2>Turning Your Vision Into Reality</h2>
+        <p>
+            At EventEase, we believe every occasion deserves thoughtful
+            planning and attention to detail. Our team works across four
+            event categories: corporate, non-profit, social and wedding events.
+        </p>
+        <p>
+            Whether it is a professional conference, a fundraising event,
+            a personal celebration or a beautiful wedding, we focus on
+            creating experiences that people remember.
+        </p>
+        <a href="/events" class="button">Discover Our Work</a>
+    </div>
+</section>
+
+<section class="contact-section" id="contact">
+    <p class="eyebrow">LET'S CREATE SOMETHING AMAZING</p>
+    <h2>We look like a perfect match?</h2>
+    <p>Get in touch with us and let's start planning your next event.</p>
+    <a href="mailto:hello@eventease.com" class="button">Get in Touch</a>
 </section>
 
 <footer>
-    <p>© 2026 EventEase | Event Management System</p>
+    <p>© 2026 EventEase. All Rights Reserved.</p>
 </footer>
 
 </body>
