@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Our Events</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav>
+    <h2>EventEase</h2>
+    <a href="/">Home</a>
+    <a href="/events">Events</a>
+    <a href="/register">Register</a>
+    <a href="/admin">Admin</a>
+</nav>
+
+<h1 class="page-title">Upcoming Events</h1>
+
+<div class="event-container">
+
+{% for event in events %}
+
+<div class="event-card">
+    <h2>{{ event[1] }}</h2>
+    <p>Date: {{ event[2] }}</p>
+    <p>Venue: {{ event[3] }}</p>
+    <p>Price: ₹{{ event[4] }}</p>
+    <a href="/register" class="btn">Register Now</a>
+</div>
+
+{% endfor %}
+
+</div>
+
+<h2 class="page-title">Add a New Event</h2>
+
+<form action="/add_event" method="POST" class="form-box">
+    <input type="text" name="name"
+    placeholder="Event Name" required>
+
+    <input type="date" name="date" required>
+
+    <input type="text" name="venue"
+    placeholder="Event Venue" required>
+
+    <input type="number" name="price"
+    placeholder="Ticket Price" required>
+
+    <button type="submit">Add Event</button>
+</form>
+
+</body>
+</html>
