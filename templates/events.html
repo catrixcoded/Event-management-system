@@ -49,11 +49,20 @@
 
                 <h3>Our Services</h3>
 
-                <ul class="service-list">
-                    {% for service in event.services %}
-                    <li>{{ service }}</li>
-                    {% endfor %}
-                </ul>
+                
+<div class="service-list">
+
+    {% for service in event.services %}
+
+    <div class="service-item">
+        <h4>{{ service.name }}</h4>
+        <p>{{ service.description }}</p>
+    </div>
+
+    {% endfor %}
+
+</div>
+
 
                 <a href="/#contact" class="button">Get in Touch</a>
             </div>
