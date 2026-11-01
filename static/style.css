@@ -1057,5 +1057,25 @@ html {
     background-repeat: no-repeat;
     min-height: 100vh;
 }
+.main-hero {
+    position: relative;
+    min-height: 100vh;
+    background-image:
+        linear-gradient(rgba(5, 25, 50, 0.35), rgba(5, 25, 50, 0.45)),
+        url("https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1920");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+}
+
+.hero-content h1,
+.hero-content p {
+    color: white;
+}
 
