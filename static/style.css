@@ -1010,7 +1010,44 @@ html {
         padding: 65px 6%;
     }
 }
+/* Transparent navigation bar over the hero image */
+.navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 6%;
+    box-sizing: border-box;
+    background: transparent !important;
+    box-shadow: none !important;
+}
 
+.navbar .logo {
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.nav-links a {
+    color: white !important;
+    background: transparent !important;
+    text-decoration: none;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    margin-left: 25px;
+}
+
+.nav-links a:hover {
+    color: #DCEBFA !important;
+}
+
+/* Keep the hero image behind the navigation */
+.main-hero {
+    position: relative;
+    min-height: 100vh;
+}
    
 
 
