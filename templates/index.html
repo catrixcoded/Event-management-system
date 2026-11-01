@@ -14,12 +14,24 @@
 <nav class="navbar">
     <a href="/" class="logo">EventEase</a>
 
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="#about">About Us</a>
-        <a href="#events">Events</a>
-        <a href="#contact">Contact</a>
+   ```html
+<div class="nav-links">
+    <a href="#about">About Us</a>
+
+    <div class="dropdown">
+        <a href="#events" class="dropbtn">Events ▾</a>
+
+        <div class="dropdown-content">
+            <a href="/events?category=corporate">Corporate Events</a>
+            <a href="/events?category=social">Social Events</a>
+            <a href="/events?category=wedding">Wedding Events</a>
+            <a href="/events?category=exhibitions">Exhibitions</a>
+        </div>
     </div>
+
+    <a href="#contact">Contact</a>
+</div>
+```
 </nav>
 
 
