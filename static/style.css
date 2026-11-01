@@ -1,4 +1,13 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;500;600;700&display=swap');
 
+/* EventEase Brand Font */
+.logo,
+.navbar .logo {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 32px;
+}
 * {
     margin: 0;
     padding: 0;
