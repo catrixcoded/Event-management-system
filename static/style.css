@@ -561,6 +561,132 @@ footer {
     }
 }
 
+/* =================================
+   EVENTEASE - NEW BLUE & WHITE THEME
+================================= */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&family=Josefin+Sans:wght@400;500;600;700&display=swap');
+
+/* Main colour palette */
+:root {
+    --primary-blue: #164B8C;
+    --deep-blue: #0B2850;
+    --light-blue: #EAF3FF;
+    --white: #FFFFFF;
+    --soft-blue: #DCEBFA;
+    --gradient-main: linear-gradient(135deg, #0B2850, #2474C6);
+    --gradient-light: linear-gradient(135deg, #FFFFFF, #DCEBFA);
+}
+
+/* Overall website */
+body {
+    background: var(--white);
+    color: var(--deep-blue);
+    font-family: 'Josefin Sans', sans-serif;
+    margin: 0;
+}
+
+/* Main headings */
+h1, h2, h3 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: var(--deep-blue);
+}
+
+/* Subheadings */
+h4, h5, h6 {
+    font-family: 'Open Sans', sans-serif;
+    color: var(--primary-blue);
+}
+
+/* Paragraphs and general text */
+p, li, label, input, textarea, select {
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background: var(--gradient-main);
+    color: var(--white);
+}
+
+.navbar a {
+    color: var(--white);
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: var(--soft-blue);
+}
+
+/* Buttons */
+button, .btn {
+    background: var(--gradient-main);
+    color: var(--white);
+    border: none;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    padding: 12px 24px;
+    transition: 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background: linear-gradient(135deg, #2474C6, #4B9CEB);
+    transform: translateY(-2px);
+}
+
+/* Cards and layouts */
+.category-card,
+.service-item {
+    background: var(--gradient-light);
+    border: 1px solid var(--soft-blue);
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(22, 75, 140, 0.10);
+    transition: 0.3s ease;
+}
+
+.category-card:hover,
+.service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(22, 75, 140, 0.18);
+}
+
+/* Section backgrounds */
+.about,
+.contact,
+section {
+    background-color: var(--white);
+}
+
+/* Form fields */
+input, textarea, select {
+    border: 1px solid #B9D2ED;
+    border-radius: 7px;
+    padding: 12px;
+    background: #FFFFFF;
+    color: var(--deep-blue);
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 6px rgba(36, 116, 198, 0.25);
+}
+
+/* Footer */
+footer {
+    background: var(--deep-blue);
+    color: var(--white);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
 
    
 
