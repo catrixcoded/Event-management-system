@@ -4,135 +4,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EventEase | Event Management</title>
+    <title>EventEase | Creating Experiences</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
 
-<!-- NAVIGATION BAR -->
+<!-- NAVIGATION -->
 <nav class="navbar">
     <a href="/" class="logo">EventEase</a>
 
     <div class="nav-links">
         <a href="/">Home</a>
-        <a href="/events">Our Events</a>
+        <a href="#about">About Us</a>
+        <a href="#events">Events</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
 
-<!-- HOME PAGE BANNER -->
 
-<!-- HOMEPAGE IMAGE SLIDESHOW -->
+<!-- FULL SCREEN HERO -->
+<header class="main-hero">
 
-<section class="slideshow">
+    <div class="hero-overlay"></div>
 
-    <div class="slide active">
-        <img src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1600"
-             alt="Corporate conference">
-        <div class="slide-caption">
-            <p>EVENTEASE PRESENTS</p>
-            <h1>We Plan. We Create. You Celebrate.</h1>
-            <p>Professional events, beautifully organised.</p>
-            <a href="/events" class="button">Explore Our Services</a>
-        </div>
+    <div class="hero-content">
+        <p class="hero-small-text">WELCOME TO EVENTEASE</p>
+
+        <h1>Giving experiences<br>worth your while</h1>
+
+        <p>
+            Creating extraordinary moments,
+            unforgettable celebrations and immersive experiences.
+        </p>
+
+        <a href="#events" class="hero-button">Explore Our Events</a>
     </div>
 
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1600"
-             alt="Community and charity event">
-        <div class="slide-caption">
-            <p>MAKING A DIFFERENCE</p>
-            <h1>Events That Bring People Together</h1>
-            <p>Meaningful experiences for important causes.</p>
-            <a href="/events?category=non-profit" class="button">Explore More</a>
-        </div>
-    </div>
+</header>
 
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1600"
-             alt="Social celebration">
-        <div class="slide-caption">
-            <p>CELEBRATE EVERY MOMENT</p>
-            <h1>Every Occasion Deserves Something Special</h1>
-            <p>Beautiful celebrations, planned with care.</p>
-            <a href="/events?category=social" class="button">Explore More</a>
-        </div>
-    </div>
 
-    <div class="slide">
-        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=1600"
-             alt="Wedding celebration">
-        <div class="slide-caption">
-            <p>YOUR DREAM DAY</p>
-            <h1>Creating Memories That Last Forever</h1>
-            <p>Thoughtful planning for your perfect wedding.</p>
-            <a href="/events?category=wedding" class="button">Explore More</a>
-        </div>
-    </div>
+<!-- ABOUT US -->
+<section class="about-section" id="about">
 
-    <button class="slide-arrow previous" onclick="changeSlide(-1)">&#10094;</button>
-    <button class="slide-arrow next" onclick="changeSlide(1)">&#10095;</button>
+    <div class="about-content">
+        <p class="section-label">WHO WE ARE</p>
 
-    <div class="slide-dots">
-        <button class="dot active" onclick="showSlide(0)"></button>
-        <button class="dot" onclick="showSlide(1)"></button>
-        <button class="dot" onclick="showSlide(2)"></button>
-        <button class="dot" onclick="showSlide(3)"></button>
+        <h2>About Us</h2>
+
+        <p>
+            At EventEase, we believe every event deserves to be
+            extraordinary. We bring creativity, thoughtful planning
+            and attention to detail together to create memorable
+            experiences. From corporate gatherings and social
+            celebrations to weddings and exhibitions, we turn
+            ideas into moments worth remembering.
+        </p>
     </div>
 
 </section>
 
-<script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".slide");
-    const dots = document.querySelectorAll(".dot");
 
-    function showSlide(index) {
-        slides[currentSlide].classList.remove("active");
-        dots[currentSlide].classList.remove("active");
-
-        currentSlide = (index + slides.length) % slides.length;
-
-        slides[currentSlide].classList.add("active");
-        dots[currentSlide].classList.add("active");
-    }
-
-    function changeSlide(direction) {
-        showSlide(currentSlide + direction);
-    }
-
-    setInterval(function() {
-        changeSlide(1);
-    }, 5000);
-</script>
-
-<!-- FOUR EVENT CATEGORIES -->
-<section class="section">
+<!-- EVENT CATEGORIES -->
+<section class="events-section" id="events">
 
     <div class="section-heading">
-        <p class="eyebrow">WHAT WE DO</p>
-        <h2>Events Made Special</h2>
-        <p>Every event has a story. We help you bring yours to life.</p>
+        <p class="section-label">WHAT WE DO</p>
+        <h2>Explore Our Events</h2>
+        <p>Discover experiences designed around your vision.</p>
     </div>
 
     <div class="category-grid">
 
-        {% for key, item in categories.items() %}
+        {% for key, category in categories.items() %}
 
-        <a href="/events?category={{ key }}" class="category-card">
+        <div class="category-card">
 
-            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <img src="{{ category.image }}" alt="{{ category.name }}">
 
-            <div class="category-info">
-                <h3>{{ item.name }}</h3>
+            <div class="category-content">
+                <h3>{{ category.name }}</h3>
 
-                <p>{{ item.description }}</p>
+                <p>{{ category.description }}</p>
 
-                <span>Explore More →</span>
+                <a href="{{ url_for('events', category=key) }}">
+                    Discover More →
+                </a>
             </div>
 
-        </a>
+        </div>
 
         {% endfor %}
 
@@ -140,140 +100,52 @@
 
 </section>
 
-<!-- ABOUT OUR COMPANY -->
-<section class="about-section">
 
-    <div class="about-image">
-        <img
-            src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1200"
-            alt="Event planning and management">
-    </div>
-
-    <div class="about-text">
-
-        <p class="eyebrow">ABOUT EVENTEASE</p>
-
-        <h2>Turning Your Vision Into Reality</h2>
-
-        <p>
-            At EventEase, we believe every occasion deserves thoughtful
-            planning and attention to detail. Our team works across four
-            event categories: corporate, non-profit, social and wedding events.
-        </p>
-
-        <p>
-            From professional conferences and fundraising events to
-            personal celebrations and beautiful weddings, we focus on
-            creating experiences that people remember.
-        </p>
-
-        <p>
-            We take care of the planning, coordination, décor and
-            management so that you can enjoy every moment.
-        </p>
-
-        <a href="/events" class="button">Discover Our Work</a>
-
-    </div>
-
-</section>
-
-<!-- CONTACT FORM -->
+<!-- CONTACT SECTION -->
 <section class="contact-section" id="contact">
 
-    <div class="section-heading">
-        <p class="eyebrow">LET'S PLAN SOMETHING SPECIAL</p>
+    <div class="contact-content">
 
-        <h2>We look like a perfect match?</h2>
+        <div class="contact-heading">
+            <p class="section-label">LET'S CONNECT</p>
 
-        <p>
-            Get in touch with us and tell us about your event.
-            We would love to hear from you!
-        </p>
-    </div>
+            <h2>Get in Touch</h2>
 
-    {% if request.args.get('submitted') == '1' %}
-
-    <div class="success-message">
-        Thank you for contacting EventEase! We have received your enquiry.
-    </div>
-
-    {% endif %}
-
-    <div class="contact-layout">
-
-        <div class="contact-image">
-
-            <img
-                src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200"
-                alt="Beautiful event celebration">
-
-            <div class="image-caption">
-                <h3>Let's create memories together.</h3>
-                <p>Your vision, our planning, one unforgettable event.</p>
-            </div>
-
+            <p>
+                Have an event in mind? Tell us about your plans
+                and let's create something memorable together.
+            </p>
         </div>
 
-        <form class="contact-form" action="/contact" method="POST">
+        <form action="/contact" method="POST" class="contact-form">
 
-            <label for="name">Your Name</label>
+            <input type="text" name="name"
+                   placeholder="Your Name" required>
 
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your full name"
-                required>
+            <input type="email" name="email"
+                   placeholder="Your Email" required>
 
-            <label for="email">Your Email</label>
+            <input type="tel" name="phone"
+                   placeholder="Your Phone Number" required>
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email address"
-                required>
-
-            <label for="phone">Your Phone Number</label>
-
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Enter your phone number"
-                required>
-
-            <label for="event_type">Type of Event</label>
-
-            <select id="event_type" name="event_type" required>
-                <option value="">Select your event</option>
-                <option value="Corporate">Corporate Event</option>
-                <option value="Non-Profit">Non-Profit Event</option>
-                <option value="Social">Social Event</option>
+            <select name="event_type" required>
+                <option value="">Select Event Type</option>
+                <option value="Corporate">Corporate</option>
+                <option value="Social">Social</option>
                 <option value="Wedding">Wedding</option>
+                <option value="Exhibitions">Exhibitions</option>
             </select>
 
-            <label for="event_date">Date of Your Event</label>
+            <label for="event_date">Event Date</label>
 
-            <input
-                type="date"
-                id="event_date"
-                name="event_date"
-                required>
+            <input type="date" id="event_date"
+                   name="event_date" required>
 
-            <label for="message">Tell Us More About Your Event</label>
+            <textarea name="message"
+                      placeholder="Tell us about your event..."
+                      rows="5" required></textarea>
 
-            <textarea
-                id="message"
-                name="message"
-                rows="5"
-                placeholder="Tell us about your plans, ideas, number of guests, location or anything else we should know..."
-                required></textarea>
-
-            <button type="submit" class="button">
-                Get in Touch
-            </button>
+            <button type="submit">Get in Touch</button>
 
         </form>
 
@@ -281,8 +153,11 @@
 
 </section>
 
+
 <!-- FOOTER -->
-<footer>
+<footer class="site-footer">
+    <h3>EventEase</h3>
+    <p>Giving experiences worth your while.</p>
     <p>© 2026 EventEase. All Rights Reserved.</p>
 </footer>
 
@@ -290,4 +165,5 @@
 </html>
 
 
-                   
+
+
