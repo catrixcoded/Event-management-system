@@ -3,135 +3,137 @@ from flask import Flask, render_template, request, redirect, url_for
 app = Flask(__name__)
 
 
+
 categories = {
     "corporate": {
         "name": "Corporate Events",
+        "description": "Professional events designed to connect people, build relationships and create business opportunities.",
         "image": "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200",
-        "description": "We specialise in creating professional corporate experiences that bring businesses, teams and clients together. From conferences to product launches, we make every business event successful.",
         "services": [
             {
                 "name": "Conference and Seminar Planning",
-                "description": "We organise business conferences, seminars and professional meetings, including schedules, speakers and venue arrangements."
+                "description": "Planning and organising professional conferences, seminars and business meetings."
             },
             {
                 "name": "Budget Management",
-                "description": "We plan and manage event expenses carefully to ensure quality experiences within your budget."
+                "description": "Managing event expenses and ensuring efficient use of resources."
             },
             {
                 "name": "Sponsorship Coordination",
-                "description": "We help identify sponsorship opportunities and coordinate with business partners."
+                "description": "Connecting with sponsors and managing sponsorship arrangements."
             },
             {
                 "name": "Food and Beverage Management",
-                "description": "We arrange catering, refreshments and dining experiences for guests and delegates."
+                "description": "Arranging refreshments, catering and dining experiences for guests."
             },
             {
                 "name": "Event Décor and Production",
-                "description": "We manage stage design, lighting, sound systems, branding and event decorations."
+                "description": "Creating professional event settings with suitable décor, lighting and sound."
             },
             {
                 "name": "Guest and Registration Management",
-                "description": "We coordinate guest invitations, registrations, welcome desks and event assistance."
-            }
-        ]
-    },
-
-    "non-profit": {
-        "name": "Non-Profit Events",
-        "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200",
-        "description": "We help charities and non-profit organisations create meaningful events that inspire communities, raise awareness and support important causes.",
-        "services": [
-            {
-                "name": "Fundraising Event Planning",
-                "description": "We organise fundraising dinners, charity galas, donation drives and benefit events."
-            },
-            {
-                "name": "Campaign and Awareness Events",
-                "description": "We create events that communicate important causes and encourage public participation."
-            },
-            {
-                "name": "Donor and Sponsor Coordination",
-                "description": "We coordinate with donors, sponsors and supporting organisations to build strong partnerships."
-            },
-            {
-                "name": "Budget Management",
-                "description": "We plan cost-effective events and help organisations make the best use of available funds."
-            },
-            {
-                "name": "Volunteer Management",
-                "description": "We organise volunteer schedules, responsibilities and on-site coordination."
-            },
-            {
-                "name": "Event Décor and Catering",
-                "description": "We arrange suitable event décor, refreshments and catering for participants."
+                "description": "Handling guest invitations, registrations and event check-ins."
             }
         ]
     },
 
     "social": {
         "name": "Social Events",
-        "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200",
-        "description": "We turn personal celebrations into memorable experiences. From birthdays and anniversaries to private parties, we take care of every detail.",
+        "description": "Special celebrations that bring friends, families and communities together.",
+        "image": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1200",
         "services": [
             {
                 "name": "Theme and Concept Development",
-                "description": "We create personalised event themes and concepts that match your style and celebration."
+                "description": "Creating unique themes and concepts based on the occasion."
             },
             {
                 "name": "Venue Selection",
-                "description": "We help find the right venue according to your guest list, preferences and budget."
+                "description": "Finding suitable venues that match the event requirements."
             },
             {
                 "name": "Food and Beverage Management",
-                "description": "We arrange customised menus, catering services and refreshments for your guests."
+                "description": "Organising catering and refreshments for guests."
             },
             {
                 "name": "Décor and Styling",
-                "description": "We manage flowers, lighting, table settings, backdrops and decorative details."
+                "description": "Designing attractive event spaces with creative decorations."
             },
             {
                 "name": "Entertainment Coordination",
-                "description": "We coordinate DJs, music, performers, games and other entertainment activities."
+                "description": "Arranging music, performances and entertainment activities."
             },
             {
                 "name": "Guest Experience Management",
-                "description": "We organise invitations, guest arrangements and on-site assistance to make everyone feel welcome."
+                "description": "Making sure guests enjoy a comfortable and memorable experience."
             }
         ]
     },
 
     "wedding": {
         "name": "Wedding Events",
+        "description": "Beautifully planned wedding celebrations that turn special moments into lasting memories.",
         "image": "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200",
-        "description": "We bring wedding dreams to life through beautiful planning, thoughtful details and seamless coordination. We make your special day memorable from beginning to end.",
         "services": [
             {
                 "name": "Wedding Planning and Coordination",
-                "description": "We manage the wedding timeline, ceremonies and arrangements to ensure everything runs smoothly."
+                "description": "Managing wedding preparations and coordinating the celebrations."
             },
             {
                 "name": "Venue Selection",
-                "description": "We help couples select beautiful venues that match their wedding style and guest requirements."
+                "description": "Finding the perfect location for the wedding ceremony and reception."
             },
             {
                 "name": "Wedding Décor and Floral Design",
-                "description": "We arrange mandap or stage décor, flowers, lighting, table settings and personalised decorations."
+                "description": "Creating elegant decorations and floral arrangements."
             },
             {
                 "name": "Catering and Hospitality",
-                "description": "We coordinate menus, food services and guest hospitality throughout the celebrations."
+                "description": "Arranging food, beverages and hospitality services."
             },
             {
                 "name": "Photography and Entertainment",
-                "description": "We coordinate photographers, videographers, DJs, musicians and wedding entertainment."
+                "description": "Coordinating photography, music and entertainment."
             },
             {
                 "name": "Guest and Vendor Management",
-                "description": "We coordinate guest arrangements, transport, accommodation and wedding suppliers."
+                "description": "Coordinating guests and working with wedding service providers."
+            }
+        ]
+    },
+
+    "exhibitions": {
+        "name": "Exhibitions",
+        "description": "Immersive and creative experiences that bring art, culture, ideas and innovation to life.",
+        "image": "https://images.unsplash.com/photo-1577083552431-6e5fd01aa342?w=1200",
+        "services": [
+            {
+                "name": "Exhibition Planning",
+                "description": "Planning exhibition concepts, schedules and visitor experiences."
+            },
+            {
+                "name": "Art and Display Arrangements",
+                "description": "Organising artwork, installations and exhibition displays."
+            },
+            {
+                "name": "Venue and Space Management",
+                "description": "Selecting and arranging spaces for exhibitions and installations."
+            },
+            {
+                "name": "Lighting and Visual Design",
+                "description": "Creating engaging displays through lighting and visual effects."
+            },
+            {
+                "name": "Visitor Management",
+                "description": "Managing visitor registrations, entry and movement throughout the exhibition."
+            },
+            {
+                "name": "Promotion and Coordination",
+                "description": "Promoting exhibitions and coordinating artists, exhibitors and partners."
             }
         ]
     }
 }
+
 
 
 
