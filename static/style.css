@@ -1048,6 +1048,14 @@ html {
     position: relative;
     min-height: 100vh;
 }
-   
+   .main-hero {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)),
+        url("/static/vangogh-immersive.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
 
 
