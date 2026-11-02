@@ -1,7 +1,11 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, url_for, session
 import os
+
 app = Flask(__name__)
+
+app.secret_key = os.environ.get("SECRET_KEY", "eventease-development-key")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "ChangeThisPassword123!")
 
 
 
