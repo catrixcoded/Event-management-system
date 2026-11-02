@@ -210,7 +210,34 @@ def contact():
     connection.close()
 
     return redirect(url_for("home") + "?submitted=1#contact")
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if request.method == "POST":
+        password = request.form.get("password", "")
 
+        if password == ADMIN_PASSWORD:
+            session["admin_logged_in"] = True
+            return redirect(url_for("admin"))
+
+        return render_template("admin_login.html", error="Incorrect password!")
+
+    if not session.get("admin_logged_in"):
+        return render_template("admin_login.html")
+
+    connection = sqlite3.connect("events.db")
+    connection.row_factory = sqlite3.Row
+    enquiries = connection.execute(
+        "SELECT * FROM enquiries ORDER BY id DESC"
+    ).fetchall()
+    connection.close()
+
+    return render_template("admin.html", enquiries=enquiries)
+
+
+@app.route("/admin/logout")
+def admin_logout():
+    session.pop("admin_logged_in", None)
+    return redirect(url_for("admin"))
 if __name__ == "__main__":
     app.run(debug=True)
 
