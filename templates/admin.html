@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventEase Admin Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            background: #EAF3FF;
+            font-family: Arial, sans-serif;
+            color: #0B2850;
+        }
+        header {
+            background: linear-gradient(135deg, #0B2850, #2474C6);
+            color: white;
+            padding: 22px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            color: white;
+            text-decoration: none;
+        }
+        main { padding: 30px 5%; }
+        .summary {
+            background: white;
+            padding: 22px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 850px;
+        }
+        th, td {
+            padding: 14px;
+            border-bottom: 1px solid #DCEBFA;
+            text-align: left;
+        }
+        th {
+            background: #164B8C;
+            color: white;
+        }
+        tr:hover { background: #F2F7FD; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h2>EventEase Admin</h2>
+        <a href="{{ url_for('admin_logout') }}">Logout</a>
+    </header>
+
+    <main>
+        <div class="summary">
+            <h2>Customer Enquiries</h2>
+            <h3>Total Enquiries: {{ enquiries|length }}</h3>
+        </div>
+
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Event Type</th>
+                        <th>Event Date</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for enquiry in enquiries %}
+                    <tr>
+                        <td>{{ enquiry.name }}</td>
+                        <td>{{ enquiry.email }}</td>
+                        <td>{{ enquiry.phone }}</td>
+                        <td>{{ enquiry.event_type }}</td>
+                        <td>{{ enquiry.event_date }}</td>
+                        <td>{{ enquiry.message }}</td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6">No enquiries received yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>
